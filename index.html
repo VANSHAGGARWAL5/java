@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Grade Average</title>
+</head>
+<body>
+    <script>
+        // Step 1: Ask the user for the number of courses
+        let numOfCourses = parseInt(prompt("How many courses did you finish?", "0"));
+
+        // Step 2: Validate the input
+        if (isNaN(numOfCourses) || numOfCourses <= 0) {
+            document.write("<p>Invalid Input!</p>");
+        } else {
+            // Step 3: Create an empty array to store course marks
+            let courseMarks = [];
+
+            // Step 4: Loop to collect marks for each course
+            for (let i = 1; i <= numOfCourses; i++) {
+                let mark = parseFloat(prompt(`Enter your mark for course ${i}:`));
+                
+                // Validate the mark
+                if (!isNaN(mark) && mark >= 0 && mark <= 100) {
+                    courseMarks.push(mark);
+                } else {
+                    document.write("<p>Invalid mark! Please enter a number between 0 and 100.</p>");
+                    break; // Stop if invalid input
+                }
+            }
+
+            // Step 5: Calculate the total and average
+            let total = 0;
+            for (let mark of courseMarks) {
+                total += mark;
+            }
+
+            let average = total / courseMarks.length;
+            average = average.toFixed(2); // Round to 2 decimal points
+
+            // Step 6: Determine the grade
+            let grade;
+            if (average >= 90) {
+                grade = "A+";
+            } else if (average >= 80) {
+                grade = "B";
+            } else if (average >= 70) {
+                grade = "C";
+            } else if (average >= 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            // Step 7: Display the average and grade
+            document.write(`<p>Your final average is ${average}. Your grade is ${grade}.</p>`);
+        }
+    </script>
+</body>
+</html>
